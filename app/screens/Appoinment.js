@@ -12,7 +12,7 @@ import { colors } from '../config/colors';
 import AppTextInput from '../components/AppTextInput';
 import AppTextButton from "../components/AppTextButton"
 
-export default function Past({ navigation }) {
+export default function Appoinment({ navigation }) {
 
     const [name, setName] = useState("");
     const [typeOfAppointment, setTypeOfAppointment] = useState('')
@@ -26,6 +26,12 @@ export default function Past({ navigation }) {
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
 
+    const timeSlots = {
+        morningSlot1: '8:30 to 9:30',
+        morningSlot2: '10:00 to 11:00',
+        eveningSlot1: '5:30 to 6:30',
+        eveningSlot2: '8:30 to 9:30'
+    }
 
     const items = [
         { label: "Maternity", value: "maternity" },
@@ -46,12 +52,32 @@ export default function Past({ navigation }) {
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
     };
+    const handleBooking = () => {
+
+        const morningTime = morningSlot1 ? 'morningSlot1' : 'morningSlot2';
+        const eveningTime = eveningSlot1 ? 'eveningSlot1' : 'eveningSlot2';
+
+        const body = {
+            id: 1,
+            Name: name,
+            DoctorName: "Dr.Dhepe",
+            typeOfAppointment,
+            place: "New York",
+            Date: date.toDateString(),
+            time: morning ? timeSlots[morningTime] : timeSlots[eveningTime],
+            Slot: morning ? "Morning" : "Evening",
+            status: "appointed"
+        };
+
+        navigation.navigate('upcomingAndPast', { item: body })
+    }
 
 
     return (
         <View style={{ flex: 1, backgroundColor: "white" }} >
             <StatusBar backgroundColor={colors.primary} />
-            <AppBar />
+            <AppBar navigation={navigation} />
+
             <View style={{ flex: 1, alignItems: 'center' }}>
                 <View style={{ marginTop: RFPercentage(6) }} >
                     <Text style={{ fontSize: RFPercentage(3.5) }} >Add Appointment</Text>
@@ -113,7 +139,7 @@ export default function Past({ navigation }) {
                     )}
                 </View>
 
-                <View style={{ marginTop: RFPercentage(3.5), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
+                <View style={{ marginTop: RFPercentage(4), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
                     <View>
                         <Text style={{ fontSize: RFPercentage(2.2) }} >Please Select Morning/Evening</Text>
                     </View>
@@ -140,7 +166,7 @@ export default function Past({ navigation }) {
                     </View>
                 </View>
 
-                <View style={{ marginTop: RFPercentage(2), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
+                <View style={{ marginTop: RFPercentage(3), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
                     <View>
                         <Text style={{ fontSize: RFPercentage(2.2) }} >Please Select Time Slot</Text>
                     </View>
@@ -194,6 +220,7 @@ export default function Past({ navigation }) {
                 {/* Button */}
                 <View style={{ marginTop: RFPercentage(4) }} >
                     <AppTextButton
+                        onSubmit={() => handleBooking()}
                         name="Book Appointment"
                         buttonStyle={{ paddingRight: RFPercentage(1), paddingLeft: RFPercentage(1) }}
                     />

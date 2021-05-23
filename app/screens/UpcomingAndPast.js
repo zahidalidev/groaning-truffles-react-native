@@ -9,16 +9,46 @@ import jsonData from '../../mydata.json';
 import Card from '../components/Card';
 import { colors } from '../config/colors';
 
-export default function upcoming() {
+export default function UpcomingAndPast(props) {
     const [upComming, setUpComming] = useState(true);
-    const [data, setData] = useState([{ blank: true, id: 1 }]);
+    const [upcomingData, setUpcomingData] = useState(jsonData);
+    const [pastData, setPastData] = useState(jsonData);
+
+    const addingApoinment = () => {
+        try {
+            let allData;
+            if (props.route.params.item === []) {
+                allData = jsonData;
+            } else {
+                allData = [...jsonData, props.route.params.item];
+            }
+            const upcoming = allData.filter(item => item.status === "appointed");
+            const past = allData.filter(item => item.status === "cancelled");
+            setUpcomingData(upcoming)
+            setPastData(past)
+        } catch (error) {
+            console.log("Error: ", error)
+        }
+    }
 
     useEffect(() => {
-        setData(jsonData)
-    }, [])
+        addingApoinment()
+    }, [props.route.params])
 
-    const handleCancel = () => {
-        console.log("hi")
+    const handleCancel = (i) => {
+        const oldData = [...upcomingData];
+        const cancelledData = oldData.splice(i, 1);
+        cancelledData.status === "cancelled";
+        setUpcomingData(oldData);
+        setPastData([...pastData, ...cancelledData])
+    }
+
+    const handleRescedule = (i) => {
+        const oldPastData = [...pastData];
+        const cancelledPastData = oldPastData.splice(i, 1);
+        cancelledPastData.status === "appointed";
+        setPastData(oldPastData);
+        setUpcomingData([...pastData, ...cancelledPastData]);
     }
 
     return (
@@ -27,9 +57,9 @@ export default function upcoming() {
 
             {/* AppBar */}
             <Appbar.Header style={{ backgroundColor: colors.primary }} >
-                <Appbar.BackAction color={colors.white} />
+                <Appbar.BackAction onPress={() => props.navigation.navigate('appointment')} color={colors.white} />
                 <Appbar.Content style={{ position: "absolute", left: "30%" }} titleStyle={{ fontSize: RFPercentage(3) }} color={colors.white} title="Appointments" />
-                <Appbar.Action size={RFPercentage(3.5)} style={{ position: "absolute", right: "2%" }} color={colors.white} icon="plus" />
+                <Appbar.Action onPress={() => props.navigation.navigate('appointment')} size={RFPercentage(3.5)} style={{ position: "absolute", right: "2%" }} color={colors.white} icon="plus" />
             </Appbar.Header>
 
             {/* Upcoming/Past Buttons */}
@@ -46,7 +76,7 @@ export default function upcoming() {
             {upComming ?
                 <View style={{ flex: 1, alignItems: 'center', marginTop: RFPercentage(2) }}>
                     <FlatList
-                        data={data.length === 0 ? [{ blank: true, id: 1 }] : data}
+                        data={upcomingData}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, i }) =>
                             <View style={{
@@ -67,7 +97,7 @@ export default function upcoming() {
                                 justifyContent: "center",
                                 flexDirection: "column",
                             }}>
-                                <Card buttonText="Cancel" onHandleCancel={() => handleCancel()} item={item} />
+                                <Card buttonText="Cancel" onHandleCancel={() => handleCancel(i)} item={item} />
                             </View>
                         }
                     />
@@ -75,7 +105,7 @@ export default function upcoming() {
                 :
                 <View style={{ flex: 1, alignItems: 'center', marginTop: RFPercentage(2) }}>
                     <FlatList
-                        data={data.length === 0 ? [{ blank: true, id: 1 }] : data}
+                        data={pastData}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, i }) =>
                             <View style={{
@@ -96,7 +126,7 @@ export default function upcoming() {
                                 justifyContent: "center",
                                 flexDirection: "column",
                             }}>
-                                <Card buttonText="Rescedule" onHandleCancel={() => handleCancel()} item={item} />
+                                <Card buttonText="Rescedule" onHandleCancel={() => handleRescedule(i)} item={item} />
                             </View>
                         }
                     />
