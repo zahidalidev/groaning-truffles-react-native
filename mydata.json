@@ -1,17 +1,24 @@
 [
-    {
-       "Name":"John",
-       "Doctor":"Dentist",
-       "DoctorName":"David",
-       "Date":"24 May 2021",
-       "Slot":"Evening"
-    },
-    {
-       "Name":"Sandy",
-       "Doctor":"Physician",
-       "DoctorName":"Harry",
-       "Date":"24 May 2021",
-       "Slot":"Morning"
-    }
-    
- ]
+   {
+      "id": 1,
+      "Name": "John",
+      "DoctorName": "Dr.Dhepe",
+      "typeOfAppointment": "maternity",
+      "place": "New York",
+      "Date": "24 May 2021",
+      "time": "2:30",
+      "Slot": "Evening",
+      "status": "appointed"
+   },
+   {
+      "id": 2,
+      "Name": "John",
+      "DoctorName": "Dr.Dhepe",
+      "typeOfAppointment": "maternity",
+      "place": "New York",
+      "Date": "24 May 2021",
+      "time": "2:30",
+      "Slot": "Evening",
+      "status": "cancelled"
+   }
+]

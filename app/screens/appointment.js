@@ -59,7 +59,7 @@ export default function Past({ navigation }) {
 
                 <View style={{ marginTop: RFPercentage(4) }} >
                     <AppTextInput
-                        placeHolder="Patent Name"
+                        placeHolder="Patient Name"
                         value={name}
                         onChange={(text) => setName(text)}
                         width="90%"
@@ -68,7 +68,7 @@ export default function Past({ navigation }) {
                     />
                 </View>
 
-                <View style={{ marginTop: RFPercentage(3) }} >
+                <View style={{ marginTop: RFPercentage(4) }} >
                     <ReactNativeCrossPicker
                         modalTextStyle={{ color: "rgb(0, 74, 173)" }}
                         mainComponentStyle={{ borderColor: colors.primary, backgroundColor: "white" }}
@@ -113,7 +113,7 @@ export default function Past({ navigation }) {
                     )}
                 </View>
 
-                <View style={{ marginTop: RFPercentage(3), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
+                <View style={{ marginTop: RFPercentage(3.5), flexDirection: "column", alignItems: "flex-start", width: "80%" }} >
                     <View>
                         <Text style={{ fontSize: RFPercentage(2.2) }} >Please Select Morning/Evening</Text>
                     </View>
@@ -192,7 +192,7 @@ export default function Past({ navigation }) {
                 </View>
 
                 {/* Button */}
-                <View style={{ marginTop: RFPercentage(3) }} >
+                <View style={{ marginTop: RFPercentage(4) }} >
                     <AppTextButton
                         name="Book Appointment"
                         buttonStyle={{ paddingRight: RFPercentage(1), paddingLeft: RFPercentage(1) }}
