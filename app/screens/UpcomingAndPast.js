@@ -81,7 +81,7 @@ export default function UpcomingAndPast(props) {
                         renderItem={({ item, i }) =>
                             <View style={{
                                 margin: RFPercentage(1),
-                                marginBottom: RFPercentage(1.5),
+                                marginBottom: RFPercentage(2.2),
                                 marginRight: RFPercentage(2),
                                 backgroundColor: "white",
                                 maxHeight: item.blank ? 0 : null,
@@ -110,7 +110,7 @@ export default function UpcomingAndPast(props) {
                         renderItem={({ item, i }) =>
                             <View style={{
                                 margin: RFPercentage(1),
-                                marginBottom: RFPercentage(1.5),
+                                marginBottom: RFPercentage(2.2),
                                 marginRight: RFPercentage(2),
                                 backgroundColor: "white",
                                 maxHeight: item.blank ? 0 : null,

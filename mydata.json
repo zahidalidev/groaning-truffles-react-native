@@ -19,6 +19,28 @@
       "Date": "24 May 2021",
       "time": "2:30",
       "Slot": "Evening",
+      "status": "appointed"
+   },
+   {
+      "id": 3,
+      "Name": "John",
+      "DoctorName": "Dr.Dhepe",
+      "typeOfAppointment": "maternity",
+      "place": "New York",
+      "Date": "24 May 2021",
+      "time": "2:30",
+      "Slot": "Evening",
+      "status": "appointed"
+   },
+   {
+      "id": 4,
+      "Name": "John",
+      "DoctorName": "Dr.Dhepe",
+      "typeOfAppointment": "maternity",
+      "place": "New York",
+      "Date": "24 May 2021",
+      "time": "2:30",
+      "Slot": "Evening",
       "status": "cancelled"
    }
 ]
