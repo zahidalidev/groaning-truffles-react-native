@@ -57,9 +57,13 @@ export default function UpcomingAndPast(props) {
 
             {/* AppBar */}
             <Appbar.Header style={{ backgroundColor: colors.primary }} >
-                <Appbar.BackAction onPress={() => props.navigation.navigate('appointment')} color={colors.white} />
+                <TouchableOpacity activeOpacity={0.8} onPress={() => props.navigation.navigate('appointment')} style={{ position: "absolute", left: "5%" }} >
+                    <Text style={{ fontSize: RFPercentage(5), color: colors.white }} >{'<'}</Text>
+                </TouchableOpacity>
                 <Appbar.Content style={{ position: "absolute", left: "30%" }} titleStyle={{ fontSize: RFPercentage(3) }} color={colors.white} title="Appointments" />
-                <Appbar.Action onPress={() => props.navigation.navigate('appointment')} size={RFPercentage(3.5)} style={{ position: "absolute", right: "2%" }} color={colors.white} icon="plus" />
+                <TouchableOpacity activeOpacity={0.8} onPress={() => props.navigation.navigate('appointment')} style={{ position: "absolute", right: "4%" }} >
+                    <Text style={{ fontSize: RFPercentage(5), color: colors.white }} >+</Text>
+                </TouchableOpacity>
             </Appbar.Header>
 
             {/* Upcoming/Past Buttons */}

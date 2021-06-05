@@ -40,11 +40,7 @@ export default function Appoinment({ navigation }) {
     ]
 
     const iconComponent = () => {
-        return <MaterialCommunityIcons
-            name={"chevron-down"}
-            size={20}
-            color={"grey"}
-        />
+        return null
     }
 
     const onChange = (event, selectedDate) => {
